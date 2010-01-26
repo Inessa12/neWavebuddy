@@ -1,0 +1,22 @@
+<h1>Manage Categories</h1>
+      <%= render :partial => 'subnav'  %>
+<table cellpadding="5" cellspacing="1" border="0" width="100%">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+<% for category in @categories %>
+  <tr class=<%= cycle('odd','even') %>>
+    <td><%=h category.name %></td>
+    <td>
+      <%= link_to 'view', category %> |
+      <%= link_to 'edit', edit_category_path(category) %> |
+      <%= link_to 'remove', category, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>

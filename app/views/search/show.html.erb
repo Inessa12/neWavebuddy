@@ -1,0 +1,20 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<div id="topBoxLeft" class="featuredBackground">
+  <br/>
+         <div id="searchBoxTitle">What are you looking for?</div> <br/>
+
+         <% form_for :search, :url => search_path, :html => {:method => :get, :id => :indexForm, :name => :indexForm} do |f|     %>
+
+                 <div id="boxContainer">
+                      <%=f.text_field :keyword, :value => 'Enter Artist Name', :onfocus => "this.value = ( this.value == this.defaultValue ) ? '' : this.value;return true;"%>
+                      Category : <%=f.select(:category_id, select_categories )%>
+                 </div>
+
+
+                <%= image_submit_tag "search.png"  , :style  =>  'float:right;' %>
+         <% end %>
+
+</div>

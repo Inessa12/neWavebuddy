@@ -1,0 +1,92 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-ca">
+  <head>
+    <title><%= t('site_name')  %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag   :defaults, 'scriptaculous', 'glider' , :cache => "cache_all" %>
+
+
+    <%= yield(:head) %>
+    
+           
+  </head>
+
+
+  <body >
+   <div id="main">
+      <div id="header">
+              <%# link_to image_tag('header.jpg',:border=>"0"), root_path %>
+      </div>
+
+     
+        
+        
+   <div id= "main_content" >        
+      <div>
+               <% if controller.controller_name != "homepage" and controller.action_name != "home"  %>
+                                 
+                <table>
+                    <tr>
+                        <td valign="top" id="sidebar-left">
+                           <div id="sidebar_content">
+                                 <ul class="sidelinks">
+                                       <li class="margin"><%= link_to("Home", root_path) %></li>
+                                        <li class="margin"><%= link_to("Google", collection_path) %></li>
+                                        <li class="margin"><%= link_to("Search", search_path) %></li>
+                                   </ul>
+                           </div>
+
+                        </td>
+
+                      <td valign="top" id="content">
+                   <!-- flash divs -->
+                   <% unless flash.empty? %>
+
+                              <%- flash.each do |name, msg| -%>
+                                <%= content_tag :div, msg, {:id => "flash_#{name}", :class => "flash"} %>
+                              <%- end -%>
+
+                  <% end %>
+                   <!-- end flash divs -->
+
+                   <%= yield :layout %>
+
+                   <br clear="all" />
+                 </td>
+                    </tr>
+                      </table>
+                             </div>
+                    
+       <% else %>
+            <%= yield  %>
+        <% end %>
+              
+      
+     </div>
+      <div id="footer">
+        &copy; 2009 NeWave Buddy | All rights reserved | <%# link_to "Privacy Policy", privacy_path %> | <%# link_to "Site Terms & Conditions", terms_path %>
+        <%- if logged_in? -%>
+          | <%=  link_to "Administration Console", user_page_path %> | <%= link_to 'Logout', logout_path %>
+        <%- else -%>
+          | <%= link_to "Administrator", login_path %>
+        <%- end -%>
+        <br/>
+      </div>
+   </div>
+            <script language="javascript">
+                    Event.observe(window, 'load',
+                      function() {
+
+                                    <%= yield :onload_home %>
+                            }
+                    );
+            </script>
+
+  </body>
+</html>
+

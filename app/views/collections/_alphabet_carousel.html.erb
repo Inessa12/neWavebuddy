@@ -1,0 +1,29 @@
+
+  <div id="carouselContainer">
+         
+
+	 <div id="cSubNav">
+
+                      <a href="#" id="previousButton" onclick="my_glider.previous();return false;">Previous</a>
+
+
+			<div id="alpabet-glider">
+					<div class="scroller">
+                                                  <div class="content">
+                                                     <% ('A'..'Z').each_with_index do  | letter , i | -%>
+                                                          <div class="section" id=<%=  "section" + i.to_s %> >
+                                                                  <%=  link_to_remote  "#{letter}" ,:update => "list_item" , :url => { :action => "update_list_items_by_alphabet" ,:letter => "#{letter}" } %>
+                                                          </div>
+                                                    <% end %>
+                                                  </div>
+                                      </div>
+			</div>
+
+			<a href="#" id="nextButton" onclick="my_glider.next();return false">Next</a>
+
+			<script type="text/javascript" charset="utf-8">
+				var my_glider = new Glider('alpabet-glider', {duration:0.5});
+			</script>
+
+    </div>
+  </div>

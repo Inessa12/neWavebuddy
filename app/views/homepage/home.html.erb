@@ -1,0 +1,70 @@
+<%= onload_event('startPage();')%>
+
+
+<script language="javascript">
+
+	// this array consists of the id attributes of the divs we wish to alternate between
+	var divs_to_fade = new Array('art-1', 'art-2', 'art-3');
+
+	// the starting index in the above array.  It should be set to the value of the div which doesn't have the CSS Display property set to "none"
+	var featureCounter = 0;
+
+	// the number of milliseconds between swaps.  Default is five seconds.
+	var wait = 5000;
+
+	// the function that performs the fade
+	function swapFade() {
+              
+		Effect.Fade(divs_to_fade[featureCounter], { duration:1, from:1.0, to:0.0 });
+		featureCounter++;
+		if (featureCounter == 3) featureCounter = 0;
+		Effect.Appear(divs_to_fade[featureCounter], { duration:1, from:0.0, to:1.0 });
+	}
+
+	// the onload event handler that starts the fading.
+	function startPage() {
+                
+		setInterval('swapFade()',wait);
+	}
+
+</script>
+
+<div id="intro_block">
+  
+  <div valign="top" id="sidebar-left">
+        <div id="sidebar_content">
+                   <ul class="sidelinks">
+                       <li class="margin"><%= link_to("Home", root_path) %></li>
+                       <li class="margin"><%= link_to("Collection", collection_path) %></li>
+                  </ul>
+        </div>
+   </div>
+ 
+        <div id="topBoxRight"">
+             <div id="art-1" >
+                      <%=image_tag('covers/51qsGVla1c.jpg', :alt => "Click here to search Depeche Mode  listings") %>                        
+              </div>
+              <div id="art-2"  style="display: none; cursor:pointer; z-index:"" >
+                      <%=image_tag('covers/AliciaKeys.jpg', :alt => "Click here to search Depeche Mode  listings") %>
+              </div>
+              <div id="art-3"  style="display: none; cursor:pointer; z-index:" >
+                      <%=image_tag('covers/SusanBoyle.jpg', :alt => "Click here to search Depeche Mode  listings") %>
+              </div>
+      </div>
+
+</div>
+
+<h1> example </h1>
+
+
+
+<div id="signup_footer">
+
+
+  <div id="footer_copy">
+    <h4>Receive our monthly electronic Newsletter.</h4>
+
+      <p>Stay in touch with all of the latest Auctions and Liquidations from Infinity Assets. We will deliver our latest information straight to you in our e-mail Newsletter.
+      </p>
+  </div>
+</div>

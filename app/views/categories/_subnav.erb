@@ -1,0 +1,11 @@
+<div id="subNav">
+  <ul>       
+        
+         <% if controller.action_name == "show" || controller.action_name == "edit"%>
+          <li ><%= link_to 'Back', categories_path %></li>
+          <% else  %>
+           <li <%= 'class="selected"' if controller.action_name == "new"%> ><%= link_to 'New category', new_category_path %></li>
+          <%  end %>
+  </ul>
+</div>
+
